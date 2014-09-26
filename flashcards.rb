@@ -1,10 +1,7 @@
 class Flashcards
 
-	# def initialize
-		# @file = 'flashcard_samples.txt'
 		@@correct_count = 0
 		@@incorrect_count = 0
-	# end
 
 	def self.get_cards
 		card_array = []
@@ -30,18 +27,17 @@ class Flashcards
 	end
 
 	def self.check_answer(input)    #returns true if input string is correct
-		correct = @def_answer_pair.values[0]==input
+		if @def_answer_pair.values[0] == input
+			correct = true
+		end
 
 		if correct
 			@@correct_count += 1 
 			View.correct
-			return_random_def
 		else
 			@@incorrect_count += 1 
 			View.incorrect
-			return_random_def
 		end
-		# return correct 
 	end
 
 	def self.correct_count
@@ -120,27 +116,7 @@ class Controller
     		View.error
     	end
 
-    end
-    
-    # def self.run!
-    #   user_input = View.prompt
-    #   if user_input == "Y"
-    #     Flashcards.return_random_def
-		  #   answer = Flashcards.return_random_def
-		  #     if answer == "meow"
-		  #     	View.exit
-		  #     else
-		  #     	Flashcards.check_answer(answer)
-		  #     end
-    #   elsif user_input == "N"
-    #   	View.exit
-    #   elsif user_input == "meow"
-    #     View.exit
-    #   else
-    #     View.error
-    #   end
-    # end
-   
+    end   
 end
 
 
