@@ -31,6 +31,7 @@ class Controller
 
 	def initialize
 		@correct_count = 0
+		@incorrect_count = 0
 		@cards = Flashcards.get_cards
 	end
 
@@ -43,12 +44,20 @@ class Controller
 	def check_answer(input)    #returns true if input string is correct
 		correct = @def_answer_pair.values[0]==input
 
-		@correct_count +=1 if correct
+		if correct
+			@correct_count +=1 
+		else
+			@incorrect_count +=1 
+		end
 		return correct 
 	end
 
 	def correct_count
 		@correct_count
+	end
+
+	def incorrect_countr
+		@incorrect_count
 	end
 
 end
