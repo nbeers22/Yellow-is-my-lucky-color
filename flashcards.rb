@@ -26,7 +26,7 @@ class Flashcards
 		p @def_answer_pair
 		definition = @def_answer_pair.keys[0]
 		puts "#{definition}"
-		gets.chomp.downcase 
+		$input = gets.chomp.downcase
 	end
 
 	def self.check_answer(input)    #returns true if input string is correct
@@ -108,26 +108,42 @@ class View
 end
 
 class Controller
-	
+
     def self.run!
-      user_input = View.prompt
-      if user_input == "Y"
-        Flashcards.return_random_def
-		    answer = Flashcards.return_random_def
-		      if answer == "meow"
-		      	View.exit
-		      else
-		      	Flashcards.check_answer(answer)
-		      end
-      elsif user_input == "N"
-      	View.exit
-      elsif user_input == "meow"
-        View.exit
-      else
-        View.error
-      end
+		if $user_input == "Y"
+    		puts Flashcards.return_random_def unless $input == "q"
+			puts Flashcards.check_answer($input) unless $input == "q"
+    		self.run! unless $input == "q"
+    	elsif $user_input == "N"
+    		View.exit
+    	else
+    		View.error
+    	end
+
     end
+    
+    # def self.run!
+    #   user_input = View.prompt
+    #   if user_input == "Y"
+    #     Flashcards.return_random_def
+		  #   answer = Flashcards.return_random_def
+		  #     if answer == "meow"
+		  #     	View.exit
+		  #     else
+		  #     	Flashcards.check_answer(answer)
+		  #     end
+    #   elsif user_input == "N"
+    #   	View.exit
+    #   elsif user_input == "meow"
+    #     View.exit
+    #   else
+    #     View.error
+    #   end
+    # end
    
 end
 
+
+$user_input = View.prompt
 Controller.run!
+View.exit
