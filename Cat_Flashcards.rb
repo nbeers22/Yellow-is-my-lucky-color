@@ -20,7 +20,7 @@ class Flashcards
 	def self.return_random_def
 		flashcards = Flashcards.get_cards
 		@def_answer_pair = Hash[flashcards.to_a.sample(1)]
-		p @def_answer_pair
+		# p @def_answer_pair
 		definition = @def_answer_pair.keys[0]
 		puts "#{definition}"
 		$input = gets.chomp.downcase
